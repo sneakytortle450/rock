@@ -1,1 +1,60 @@
+class rock:
+    variables:
+        int x (where it is left to right)
+        int size (how big it is)
+        int flying (seconds it is in the air)
+        int mood (how happy is the rock (rock gets happy when it breaks obsticles))
+        int speed (rocks speed & ability to break obsticles)
 
+    functions:
+        update:
+            speed up a bit
+            if holding left go left
+            if holding right go right
+            go to next frame of boulder
+
+class obsticle:
+    variables:
+        String image (what png to throw up and also toughness and size(if image is boulder small size, big toughness))
+        int toughness (amount of speed it takes to break)
+        int size (how big it is)
+
+    functions:
+        update:
+            move down by rock speed & get bigger
+            if touching rock && rock is not flying:
+                if rock speed > toughness:
+                    reduce rock speed by toughness
+                    break obsticle
+                else:
+                    state = game over
+
+class ramp:
+    variables:
+        int height (how much flight time and speed the rock gets(random from (6-20)*5))
+        int size (how big it is)
+
+    functions:
+        update:
+            move down by rock speed & get bigger
+            if touching rock && rock is not flying:
+                rock speed += height
+                rock flying += height/20
+
+main loop:
+    if state = menu:
+        draw rectangle
+        draw text
+        if start pressed state = play
+    if state = play:
+        draw background (moves down by rock speed)
+        update rock
+        for amount of obsticles:
+            update obsticles
+        for amount of ramps:
+            update ramps
+        spawn an obsticle andor a ramp sometimes
+    if state = game over
+        draw rectangle
+        draw text
+        if start pressed state = menu
